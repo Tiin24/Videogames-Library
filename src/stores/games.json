@@ -1,0 +1,899 @@
+[
+    {
+        "id": 1,
+        "slug": "the-witcher-3-wild-hunt",
+        "name": "The Witcher 3: Wild Hunt",
+        "released": "2015-05-19",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/17544707557083603305",
+        "rating": 4.67,
+        "rating_top": 5,
+        "ratings_count": 6220,
+        "reviews_count": 180,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            },
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 5,
+                "name": "RPG",
+                "slug": "rpg"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "slug": "grand-theft-auto-v",
+        "name": "Grand Theft Auto V",
+        "released": "2013-09-17",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/17117418130780584921",
+        "rating": 4.47,
+        "rating_top": 5,
+        "ratings_count": 5500,
+        "reviews_count": 150,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "slug": "red-dead-redemption-2",
+        "name": "Red Dead Redemption 2",
+        "released": "2018-10-26",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/4597356949110769232",
+        "rating": 4.75,
+        "rating_top": 5,
+        "ratings_count": 5800,
+        "reviews_count": 170,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "slug": "portal-2",
+        "name": "Portal 2",
+        "released": "2011-04-19",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/4247095163017668942",
+        "rating": 4.65,
+        "rating_top": 5,
+        "ratings_count": 4800,
+        "reviews_count": 120,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 7,
+                "name": "Puzzle",
+                "slug": "puzzle"
+            },
+            {
+                "id": 2,
+                "name": "Shooter",
+                "slug": "shooter"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "slug": "the-legend-of-zelda-breath-of-the-wild",
+        "name": "The Legend of Zelda: Breath of the Wild",
+        "released": "2017-03-03",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/8446175411091631257",
+        "rating": 4.79,
+        "rating_top": 5,
+        "ratings_count": 5100,
+        "reviews_count": 140,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            },
+            {
+                "id": 5,
+                "name": "RPG",
+                "slug": "rpg"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "slug": "minecraft",
+        "name": "Minecraft",
+        "released": "2011-11-18",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/1639600188507035897",
+        "rating": 4.30,
+        "rating_top": 5,
+        "ratings_count": 4500,
+        "reviews_count": 100,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            },
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            },
+            {
+                "platform": {
+                    "id": 8,
+                    "name": "Android",
+                    "slug": "android"
+                }
+            },
+            {
+                "platform": {
+                    "id": 9,
+                    "name": "iOS",
+                    "slug": "ios"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 83,
+                "name": "Indie",
+                "slug": "indie"
+            },
+            {
+                "id": 51,
+                "name": "Arcade",
+                "slug": "arcade"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "slug": "cyberpunk-2077",
+        "name": "Cyberpunk 2077",
+        "released": "2020-12-10",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/3556582627396924703",
+        "rating": 3.90,
+        "rating_top": 4,
+        "ratings_count": 3500,
+        "reviews_count": 90,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 5,
+                "name": "RPG",
+                "slug": "rpg"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "slug": "elden-ring",
+        "name": "Elden Ring",
+        "released": "2022-02-25",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/4255665925033101819",
+        "rating": 4.85,
+        "rating_top": 5,
+        "ratings_count": 4000,
+        "reviews_count": 110,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 5,
+                "name": "RPG",
+                "slug": "rpg"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "slug": "god-of-war",
+        "name": "God of War",
+        "released": "2018-04-20",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/3273237107826031827",
+        "rating": 4.80,
+        "rating_top": 5,
+        "ratings_count": 4200,
+        "reviews_count": 125,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "slug": "horizon-zero-dawn",
+        "name": "Horizon Zero Dawn",
+        "released": "2017-02-28",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/17056554007477111854",
+        "rating": 4.55,
+        "rating_top": 5,
+        "ratings_count": 3800,
+        "reviews_count": 105,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 5,
+                "name": "RPG",
+                "slug": "rpg"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "slug": "stardew-valley",
+        "name": "Stardew Valley",
+        "released": "2016-02-26",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/3979365599141625045",
+        "rating": 4.50,
+        "rating_top": 5,
+        "ratings_count": 3200,
+        "reviews_count": 80,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 51,
+                "name": "Arcade",
+                "slug": "arcade"
+            },
+            {
+                "id": 10,
+                "name": "Strategy",
+                "slug": "strategy"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "slug": "doom-eternal",
+        "name": "Doom Eternal",
+        "released": "2020-03-20",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/13250680924729768015",
+        "rating": 4.40,
+        "rating_top": 5,
+        "ratings_count": 3000,
+        "reviews_count": 75,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            },
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 2,
+                "name": "Shooter",
+                "slug": "shooter"
+            },
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "slug": "animal-crossing-new-horizons",
+        "name": "Animal Crossing: New Horizons",
+        "released": "2020-03-20",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/1796259277705372894",
+        "rating": 4.10,
+        "rating_top": 4,
+        "ratings_count": 2800,
+        "reviews_count": 60,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 51,
+                "name": "Arcade",
+                "slug": "arcade"
+            },
+            {
+                "id": 59,
+                "name": "Casual",
+                "slug": "casual"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "slug": "the-last-of-us-part-ii",
+        "name": "The Last of Us Part II",
+        "released": "2020-06-19",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/7955597596244473015",
+        "rating": 4.30,
+        "rating_top": 4,
+        "ratings_count": 3100,
+        "reviews_count": 85,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "slug": "ghost-of-tsushima",
+        "name": "Ghost of Tsushima",
+        "released": "2020-07-17",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/17841105414627109051",
+        "rating": 4.70,
+        "rating_top": 5,
+        "ratings_count": 3300,
+        "reviews_count": 95,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "slug": "hades",
+        "name": "Hades",
+        "released": "2020-09-17",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/10930028597849203873",
+        "rating": 4.60,
+        "rating_top": 5,
+        "ratings_count": 2900,
+        "reviews_count": 70,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 7,
+                    "name": "Nintendo",
+                    "slug": "nintendo"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 51,
+                "name": "Arcade",
+                "slug": "arcade"
+            },
+            {
+                "id": 83,
+                "name": "Indie",
+                "slug": "indie"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "slug": "it-takes-two",
+        "name": "It Takes Two",
+        "released": "2021-03-26",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/1023048631733720750",
+        "rating": 4.75,
+        "rating_top": 5,
+        "ratings_count": 2700,
+        "reviews_count": 65,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 3,
+                "name": "Adventure",
+                "slug": "adventure"
+            },
+            {
+                "id": 51,
+                "name": "Arcade",
+                "slug": "arcade"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "slug": "deathloop",
+        "name": "Deathloop",
+        "released": "2021-09-14",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/9932624027139222238",
+        "rating": 4.20,
+        "rating_top": 4,
+        "ratings_count": 2500,
+        "reviews_count": 55,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 2,
+                "name": "Shooter",
+                "slug": "shooter"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "slug": "resident-evil-village",
+        "name": "Resident Evil Village",
+        "released": "2021-05-07",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/6189545626669946191",
+        "rating": 4.10,
+        "rating_top": 4,
+        "ratings_count": 2600,
+        "reviews_count": 58,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 2,
+                    "name": "PlayStation",
+                    "slug": "playstation"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 4,
+                "name": "Action",
+                "slug": "action"
+            },
+            {
+                "id": 5,
+                "name": "RPG",
+                "slug": "rpg"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "slug": "forza-horizon-5",
+        "name": "Forza Horizon 5",
+        "released": "2021-11-09",
+        "background_image": "http://googleusercontent.com/image_collection/image_retrieval/3585741189469309222",
+        "rating": 4.60,
+        "rating_top": 5,
+        "ratings_count": 2400,
+        "reviews_count": 50,
+        "parent_platforms": [
+            {
+                "platform": {
+                    "id": 1,
+                    "name": "PC",
+                    "slug": "pc"
+                }
+            },
+            {
+                "platform": {
+                    "id": 3,
+                    "name": "Xbox",
+                    "slug": "xbox"
+                }
+            }
+        ],
+        "genres": [
+            {
+                "id": 1,
+                "name": "Racing",
+                "slug": "racing"
+            },
+            {
+                "id": 51,
+                "name": "Arcade",
+                "slug": "arcade"
+            }
+        ]
+    }
+]
