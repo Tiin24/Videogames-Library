@@ -1,5 +1,5 @@
 <script setup>
-import { watch } from 'vue'; // No need for onMounted for data fetching anymore
+import { computed, onMounted, watch } from 'vue'; // No need for onMounted for data fetching anymore
 import { useRawgStore } from '@/stores/games';
 import CardGamePlaceholder from '@/components/cards/placeholders/CardGamePlaceholder.vue';
 
@@ -8,11 +8,23 @@ const props = defineProps({
   icon: Function,
   component: Object, // This is your CardGame component
   fetchType: String,
-  params: Object,
+  params: {
+    type: Object,
+    default: () => ({}) // Default to an empty object if no params are provided
+  },
   componentProps: {
     type: Object,
     default: () => ({})
+  },
+  endpoint: {
+    type: String,
+    default: 'games' // Default endpoint if not provided
+  },
+  item: {
+    type: Object,
+    default: () => ({}) // Default to an empty object if no item is provided
   }
+
 });
 
 const rawg = useRawgStore();
@@ -29,19 +41,43 @@ watch(
   () => props.params,
   (newParams, oldParams) => {
     if (JSON.stringify(newParams) !== JSON.stringify(oldParams)) {
-      console.log('Parámetros cambiados, recargando datos...');
+      console.log('🔁 Parámetros cambiaron. Limpiando y recargando...');
+      rawg.clearData(props.fetchType);
+      rawg.clearData(props.endpoint); // 🔥 limpiar también por endpoint
       loadData(newParams);
     }
   },
-  {
-    deep: true,
-    immediate: true // Carga inicial y recarga en cambios de params
-  }
+  { deep: true, immediate: true }
 );
 
 function loadMore() {
   rawg.fetchNextPage(props.fetchType);
 }
+
+const data = computed(() => rawg.dataMap[props.endpoint] || [])
+
+onMounted(() => {
+  rawg.fetchGamesByEndpoint(props.endpoint, props.params)
+  rawg.fetchGamesByEndpoint(props.endpoint, props.params)
+});
+
+
+const propName = computed(() => {
+  // Verifica si el componente fue definido correctamente
+  if (!props.component || typeof props.component !== 'object') return 'model';
+
+  const rawProps = props.component.props;
+  if (!rawProps) return 'model';
+
+  // Si las props están como array ['game', 'model']
+  if (Array.isArray(rawProps)) {
+    return rawProps[0];
+  }
+
+  // Si están como objeto { game: { type: Object }, model: {...} }
+  return Object.keys(rawProps)[0] || 'model';
+});
+
 </script>
 
 <template>
@@ -62,8 +98,8 @@ function loadMore() {
 
     <div v-else-if="Array.isArray(rawg.dataMap[fetchType]) && rawg.dataMap[fetchType].length > 0"
       class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <component :is="component" v-for="(game, index) in rawg.dataMap[fetchType]" :key="game.id ?? index" :game="game"
-        v-bind="componentProps" />
+      <component :is="props.component" v-for="(item, index) in data" :key="item.id ?? index"
+        v-bind="{ [propName]: item, ...componentProps }" />
     </div>
     <div v-else class="text-center py-10 text-gray-500">
       No se encontraron resultados.

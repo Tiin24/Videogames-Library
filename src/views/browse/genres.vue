@@ -1,10 +1,10 @@
-<template>
-  <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Géneros</h1>
-    <p class="text-gray-600">Explora videojuegos por género.</p>
-  </div>
-</template>
-
 <script setup>
-// Lógica para mostrar géneros
+import CardBrowse from '@/components/cards/CardBrowse.vue';
+import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import { Ghost } from 'lucide-vue-next';
 </script>
+
+<template>
+  <ResultListTemplate title="All Genres" :icon="Ghost" endpoint="genres" fetchType="genres" :component="CardBrowse"
+    :componentProps="{}" />
+</template>

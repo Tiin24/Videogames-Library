@@ -64,6 +64,30 @@ export const useRawgStore = defineStore('rawg', {
       } finally {
         this.loading = false;
       }
-    }
+    },
+    // new action for endpont dinamic
+    async fetchGamesByEndpoint(endpoint, params = {}) {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await axios.get(`${this.baseUrl}/${endpoint}`, {
+          params: {
+            key: this.apiKey,
+            ...params,
+          },
+        });
+
+        // Ensure dataMap[endpoint] is an array, even if API returns null/undefined results
+        this.dataMap[endpoint] = response.data.results || [];
+        this.nextPage[endpoint] = response.data.next;
+      } catch (err) {
+        this.error = 'Error al cargar los juegos: ' + err.message;
+        console.error(err);
+        this.dataMap[endpoint] = []; // On error, ensure it's an empty array
+        this.nextPage[endpoint] = null;
+      } finally {
+        this.loading = false;
+      }
+    },
   }
 });

@@ -1,4 +1,10 @@
-<template>
+<script setup>
+import CardBrowse from '@/components/cards/CardBrowse.vue';
+import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import { CodeXml } from 'lucide-vue-next';
+</script>
 
-  <h1>developers</h1>
+<template>
+  <ResultListTemplate title="All Developers" :icon="CodeXml" endpoint="developers" fetchType="developers"
+    :component="CardBrowse" :componentProps="{}" />
 </template>
