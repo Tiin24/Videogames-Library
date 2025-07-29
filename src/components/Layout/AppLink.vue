@@ -53,11 +53,14 @@ const router = useRouter()
   * @return {string} Generated link
   */
 function setLink(navGroup, title) {
+  if (title === 'Home') return '/'; // 👈 solución directa
+
   const groupPath = navGroup.group ? '/' + slugify(navGroup.title, { lower: true, strict: true, trim: true }) : '';
-  const titlePath = title === 'Home' ? '' : '/' + slugify(title, { lower: true, strict: true, trim: true });
+  const titlePath = '/' + slugify(title, { lower: true, strict: true, trim: true });
 
   return groupPath + titlePath;
 }
+
 
 /**
   * Set the new route.

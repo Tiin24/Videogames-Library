@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { CalendarCheck, ChevronDown, CodeXml, DollarSign, Download, Flame, Gamepad2, Ghost, Hash, History, Home, Hourglass, Newspaper, Search, Shuffle, Trophy } from 'lucide-vue-next';
 import AppLink from './AppLink.vue';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuItem, useSidebar } from '../ui/sidebar';
@@ -17,7 +17,8 @@ const navList = [
     links: [
       {
         title: 'Home',
-        icon: Home
+        icon: Home,
+        path: '/'
       },
       {
         title: 'Advanced search',

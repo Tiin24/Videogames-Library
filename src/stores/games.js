@@ -1,78 +1,51 @@
-import { defineStore } from 'pinia';
-import axios from 'axios'; // Se recomienda usar Axios para las peticiones HTTP
-
-// Si no tienes Axios, instálalo: npm install axios
+// stores/rawg.js
+import { defineStore } from 'pinia'
+import axios from 'axios'
 
 export const useRawgStore = defineStore('rawg', {
   state: () => ({
-    games: [],
+    dataMap: {},
     loading: false,
     error: null,
-    apiKey: '757a3f2fac854499a36e6f6a4f10bc9f', // ¡Reemplaza con tu clave real!
+    apiKey: '757a3f2fac854499a36e6f6a4f10bc9f',
     baseUrl: 'https://api.rawg.io/api',
+    nextPage: null,
   }),
-  getters: {
-    getPopularGames: (state) => state.games.slice(0, 10), // Ejemplo de un getter
-  },
   actions: {
-    async fetchGames(params = {}) {
-      this.loading = true;
-      this.error = null;
+    async fetchGamesByType(type = 'default', params = {}) {
+      this.loading = true
+      this.error = null
       try {
         const response = await axios.get(`${this.baseUrl}/games`, {
           params: {
             key: this.apiKey,
             ...params,
           },
-        });
-        this.games = response.data.results;
+        })
+        this.dataMap[type] = response.data.results
+        this.nextPage = response.data.next
       } catch (err) {
-        this.error = 'Error al cargar los juegos: ' + err.message;
-        console.error('Error fetching games:', err);
+        this.error = 'Error al cargar los juegos: ' + err.message
+        console.error(err)
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
-
-    async fetchGameDetails(gameId) {
-      this.loading = true;
-      this.error = null;
+    async fetchNextPage(type) {
+      if (!this.nextPage) return
+      this.loading = true
       try {
-        const response = await axios.get(`${this.baseUrl}/games/${gameId}`, {
-          params: {
-            key: this.apiKey,
-          },
-        });
-        // Aquí podrías guardar los detalles de un juego específico si los necesitas en el store
-        // Por ahora, solo lo retornamos.
-        return response.data;
+        const response = await axios.get(this.nextPage)
+        this.dataMap[type] = [...(this.dataMap[type] || []), ...response.data.results]
+        this.nextPage = response.data.next
       } catch (err) {
-        this.error = 'Error al cargar los detalles del juego: ' + err.message;
-        console.error(`Error fetching game details for ID ${gameId}:`, err);
-        return null;
+        this.error = 'Error al cargar más juegos: ' + err.message
+        console.error(err)
       } finally {
-        this.loading = false;
-      }
-    },
-
-    // Puedes agregar más acciones para diferentes endpoints de la API de RAWG
-    async searchGames(query) {
-      this.loading = true;
-      this.error = null;
-      try {
-        const response = await axios.get(`${this.baseUrl}/games`, {
-          params: {
-            key: this.apiKey,
-            search: query,
-          },
-        });
-        this.games = response.data.results;
-      } catch (err) {
-        this.error = 'Error al buscar juegos: ' + err.message;
-        console.error('Error searching games:', err);
-      } finally {
-        this.loading = false;
+        this.loading = false
       }
     }
-  },
-});
+  }
+})
+
+

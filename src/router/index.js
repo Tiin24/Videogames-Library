@@ -1,6 +1,6 @@
+import HomeView from '@/views/HomeView.vue'
 import DashboardLayout from '../layout/DashboardLayout.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/HomeView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -8,11 +8,10 @@ const router = createRouter({
       path: '/',
       component: DashboardLayout,
       children: [
-        // Páginas principales
         {
           path: '',
           name: 'home',
-          component: Home,
+          component: HomeView,
         },
         {
           path: 'advanced-search',
@@ -48,6 +47,10 @@ const router = createRouter({
 
         // Planning
         {
+          path: 'planning',
+          redirect: '/planning/recently-released'
+        },
+        {
           path: 'planning/recently-released',
           name: 'planning-recently-released',
           component: () => import('../views/planning/recently-released.vue'),
@@ -64,6 +67,10 @@ const router = createRouter({
         },
 
         // Browse
+        {
+          path: 'browse',
+          redirect: '/browse/genres'
+        },
         {
           path: 'browse/genres',
           name: 'browse-genres',

@@ -1,6 +1,11 @@
-<template>
-  <DashboardLayout>
+<script setup lang="ts">
+import CardGame from '@/components/cards/CardGame.vue';
+import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import { Calendar } from 'lucide-vue-next';
 
-    <h1>Up Comming Released</h1>
-  </DashboardLayout>
+</script>
+
+<template>
+  <ResultListTemplate title="Upcoming Releases" :icon=Calendar :component="CardGame" fetchType="-added"
+    :params="{ ordering: '-added' }" :componentProps="{ showReleaseDate: true }" />
 </template>

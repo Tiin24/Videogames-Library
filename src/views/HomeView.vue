@@ -1,10 +1,7 @@
 <template>
-  <Button class="bg-blue-500 text-white hover:bg-blue-600" @click="() => alert('Button clicked!')">
-    Click Me
-  </Button>
+
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Home</h1>
+    <p class="text-gray-600">Welcome to the Videogames Library!</p>
+  </div>
 </template>
-
-<script setup>
-import { Button } from '@/components/ui/button';
-
-</script>
