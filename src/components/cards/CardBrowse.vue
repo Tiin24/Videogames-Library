@@ -51,7 +51,7 @@ const hasProperty = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, pro
       <div class="absolute inset-0 bg-black/50 z-10" />
 
       <!-- Contenido -->
-      <div class="relative z-30 flex flex-col justify-between h-full p-4 text-white">
+      <div class="relative z-10 flex flex-col justify-between h-full p-4 text-white">
         <div class="text-center">
           <CardTitle class="text-lg font-bold tracking-wide leading-snug">
             {{ model.name }}

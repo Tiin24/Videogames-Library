@@ -1,6 +1,6 @@
 <script setup>
 import CardGame from '@/components/cards/CardGame.vue';
-import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import ListTemplate from '@/components/template/ListTemplate.vue';
 import { Calendar } from 'lucide-vue-next';
 
 // Función para obtener la fecha actual en formato YYYY-MM-DD
@@ -15,12 +15,12 @@ const getThirtyDaysAgo = () => {
   date.setDate(date.getDate() - 30); // Resta 30 días
   return date.toISOString().split('T')[0];
 };
+
 </script>
 
 <template>
-  <ResultListTemplate key="recently-released-games" title="Recently Released" :icon="Calendar" :component="CardGame"
-    fetchType="games" :params="{
-      dates: `${getThirtyDaysAgo()},${getCurrentDate()}`, // Rango: últimos 30 días hasta hoy
-      ordering: '-released' // Ordena por fecha de lanzamiento descendente (los más nuevos primero)
-    }" :componentProps="{ showReleaseDate: true }" />
+  <ListTemplate title="Recently Released" :icon="Calendar" resource="games" :query="{
+    ordering: '-released',
+    dates: `${getThirtyDaysAgo()},${getCurrentDate()}`
+  }" :cardComponent="CardGame" itemPropName="game" :showRating="false" />
 </template>

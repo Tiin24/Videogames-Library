@@ -9,7 +9,8 @@ import { computed } from 'vue'
 const props = defineProps({
   game: {
     type: Object,
-    required: true
+    required: true,
+    default: () => ({})
   },
   showRating: {
     type: Boolean,

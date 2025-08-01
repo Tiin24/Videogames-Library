@@ -1,10 +1,10 @@
 <script setup>
 import CardBrowse from '@/components/cards/CardBrowse.vue';
-import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import ListTemplate from '@/components/template/ListTemplate.vue';
 import { Download } from 'lucide-vue-next';
 </script>
 
 <template>
-  <ResultListTemplate title="All Stores" :icon="Download" endpoint="stores" fetchType="stores" :component="CardBrowse"
-    :componentProps="{}" />
+  <ListTemplate title="All Stores" :icon="Download" resource="stores" :query="{ ordering: '-games_count' }"
+    :cardComponent="CardBrowse" itemPropName="model" />
 </template>

@@ -1,10 +1,10 @@
 <script setup>
 import CardBrowse from '@/components/cards/CardBrowse.vue';
-import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import ListTemplate from '@/components/template/ListTemplate.vue';
 import { DollarSign } from 'lucide-vue-next';
 </script>
 
 <template>
-  <ResultListTemplate title="All Publishers" :icon="DollarSign" endpoint="publishers" fetchType="publishers"
-    :component="CardBrowse" :componentProps="{}" />
+  <ListTemplate title="All Publishers" :icon="DollarSign" resource="publishers" :query="{ ordering: '-games_count' }"
+    :cardComponent="CardBrowse" itemPropName="model" />
 </template>

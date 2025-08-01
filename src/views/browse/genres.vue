@@ -1,10 +1,10 @@
 <script setup>
 import CardBrowse from '@/components/cards/CardBrowse.vue';
-import ResultListTemplate from '@/template/ResultListTemplate.vue';
+import ListTemplate from '@/components/template/ListTemplate.vue';
 import { Ghost } from 'lucide-vue-next';
 </script>
 
 <template>
-  <ResultListTemplate title="All Genres" :icon="Ghost" endpoint="genres" fetchType="genres" :component="CardBrowse"
-    :componentProps="{}" />
+  <ListTemplate title="All Genres" :icon="Ghost" resource="genres" :query="{ ordering: '-games_count' }"
+    :cardComponent="CardBrowse" itemPropName="model" />
 </template>

@@ -1,10 +1,10 @@
 <script setup>
-import ResultListTemplate from '@/template/ResultListTemplate.vue'
-import CardGame from '@/components/cards/CardGame.vue'
-import { Flame } from 'lucide-vue-next'
+import { Flame } from 'lucide-vue-next';
+import ListTemplate from '@/components/template/ListTemplate.vue';
+import CardGame from '@/components/cards/CardGame.vue';
 </script>
 
 <template>
-  <ResultListTemplate title="Most Popular Games" :icon="Flame" :component="CardGame" fetchType="popular"
-    :params="{ ordering: '-popular' }" />
+  <ListTemplate title="Popular Games" :icon="Flame" resource="games" :query="{ ordering: '-popularity' }"
+    :cardComponent="CardGame" itemPropName="game" :showRating="false" />
 </template>

@@ -10,7 +10,9 @@ import AppSidebar from '@/components/Layout/AppSidebar.vue';
     <SidebarInset class="relative container w-[calc(100%-var(--sidebar-width))] px-4 sm:px-8">
       <AppHeader />
       <div class="flex-grow">
-        <router-view />
+        <main>
+          <router-view />
+        </main>
       </div>
     </SidebarInset>
   </SidebarProvider>

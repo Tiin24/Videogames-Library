@@ -1,93 +1,74 @@
-// stores/rawg.js
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
+const API_KEY = '52ba7fc7e3bb48378ba876fcd8ca75db'; // ⚠️ Reemplazá esto por tu API real
+const BASE_URL = 'https://api.rawg.io/api';
+
 export const useRawgStore = defineStore('rawg', {
   state: () => ({
-    dataMap: {}, // Always initialize as an empty object
+    data: [],             // ⬅️ ahora es genérico
+    dataMap: {},
     loading: false,
     error: null,
-    apiKey: '757a3f2fac854499a36e6f6a4f10bc9f',
-    baseUrl: 'https://api.rawg.io/api',
-    nextPage: {}, // Ensure this is an object for per-type tracking
+    page: 1,
+    pageCount: 1,
   }),
+
   actions: {
-    async fetchGamesByType(type = 'default', params = {}) {
+    async fetch(resource = 'games', reset = true, query = {}) {
+      if (reset) {
+        this.page = 1;
+        this.data = [];
+      }
+
       this.loading = true;
       this.error = null;
-      try {
-        const response = await axios.get(`${this.baseUrl}/games`, {
-          params: {
-            key: this.apiKey,
-            ...params,
-          },
-        });
 
-        // Ensure dataMap[type] is an array, even if API returns null/undefined results
-        this.dataMap[type] = response.data.results || [];
-        this.nextPage[type] = response.data.next;
-      } catch (err) {
-        this.error = 'Error al cargar los juegos: ' + err.message;
-        console.error(err);
-        this.dataMap[type] = []; // On error, ensure it's an empty array
-        this.nextPage[type] = null;
+      try {
+        const params = {
+          key: API_KEY,
+          page: this.page,
+          page_size: 20,
+          ...query,
+        };
+
+        const response = await axios.get(`${BASE_URL}/${resource}`, { params });
+
+        const total = response.data.count || 0;
+        this.pageCount = Math.ceil(total / params.page_size);
+
+        const results = response.data.results || [];
+
+        if (reset) {
+          this.data = results;
+        } else {
+          this.data = [...this.data, ...results];
+        }
+      } catch (error) {
+        this.error = error.message || 'Error al obtener datos';
       } finally {
         this.loading = false;
       }
     },
 
-    // NEW: Action to clear data for a specific type
-    clearData(type) {
-      this.dataMap[type] = []; // Explicitly set to an empty array
-      this.nextPage[type] = null; // Reset next page for this type
-      // You might also want to clear any specific error for this type if applicable
-      // this.error = null; // Or this.errors[type] = null; if you track errors per type
+    async loadMore(resource = 'games', query = {}) {
+      if (this.loading || this.page >= this.pageCount) return;
+      this.page++;
+      await this.fetch(resource, false, query);
     },
 
-    async fetchNextPage(type) {
-      const currentNextPageUrl = this.nextPage[type];
+    async search(query = {}, reset = true, resource = 'games') {
+      return this.fetch(resource, reset, query);
+    },
 
-      if (!currentNextPageUrl || this.loading) {
-        // console.warn(`No hay más páginas o ya está cargando para el tipo: ${type}`); // Optional: for debugging
-        return;
-      }
-
-      this.loading = true;
+    async fetchGamesByEndpoint(resource) {
       try {
-        const response = await axios.get(currentNextPageUrl);
-        // Ensure dataMap[type] is initialized as an array before spreading
-        this.dataMap[type] = [...(this.dataMap[type] || []), ...(response.data.results || [])];
-        this.nextPage[type] = response.data.next;
-      } catch (err) {
-        this.error = 'Error al cargar más juegos: ' + err.message;
-        console.error(err);
-      } finally {
-        this.loading = false;
+        const params = { key: API_KEY, page_size: 40 };
+        const res = await axios.get(`${BASE_URL}/${resource}`, { params });
+        this.dataMap[resource] = res.data.results || [];
+      } catch (e) {
+        console.error(`Error al cargar ${resource}:`, e);
       }
-    },
-    // new action for endpont dinamic
-    async fetchGamesByEndpoint(endpoint, params = {}) {
-      this.loading = true;
-      this.error = null;
-      try {
-        const response = await axios.get(`${this.baseUrl}/${endpoint}`, {
-          params: {
-            key: this.apiKey,
-            ...params,
-          },
-        });
-
-        // Ensure dataMap[endpoint] is an array, even if API returns null/undefined results
-        this.dataMap[endpoint] = response.data.results || [];
-        this.nextPage[endpoint] = response.data.next;
-      } catch (err) {
-        this.error = 'Error al cargar los juegos: ' + err.message;
-        console.error(err);
-        this.dataMap[endpoint] = []; // On error, ensure it's an empty array
-        this.nextPage[endpoint] = null;
-      } finally {
-        this.loading = false;
-      }
-    },
-  }
+    }
+  },
 });

@@ -5,6 +5,5 @@ import { CodeXml } from 'lucide-vue-next';
 </script>
 
 <template>
-  <ResultListTemplate title="All Developers" :icon="CodeXml" endpoint="developers" fetchType="developers"
-    :component="CardBrowse" :componentProps="{}" />
+  <ResultListTemplate title="All Developers" :icon="CodeXml" endpoint="developers" :component="CardBrowse" />
 </template>
