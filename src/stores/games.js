@@ -69,6 +69,38 @@ export const useRawgStore = defineStore('rawg', {
       } catch (e) {
         console.error(`Error al cargar ${resource}:`, e);
       }
+    },
+
+    async fetchGameDetails(id) {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await axios.get(`${BASE_URL}/games/${id}`, {
+          params: { key: API_KEY },
+        });
+        return response.data;
+      } catch (error) {
+        this.error = error.message || 'Error al obtener detalles';
+        throw error;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async fetchScreenshots(gameId) {
+      this.loading = true
+      this.error = null
+      try {
+        const res = await axios.get(`${BASE_URL}/games/${gameId}/screenshots`, {
+          params: { key: API_KEY }
+        })
+        return res.data.results || []
+      } catch (error) {
+        this.error = error.message || 'Error al obtener screenshots'
+        return []
+      } finally {
+        this.loading = false
+      }
     }
   },
 });

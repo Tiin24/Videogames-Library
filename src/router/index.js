@@ -101,6 +101,16 @@ const router = createRouter({
           name: 'browse-publishers',
           component: () => import('../views/browse/publishers.vue'),
         },
+        // 🆕 Ruta dinámica para detalle de juego
+        {
+          path: 'games',
+          redirect: '/'
+        },
+        {
+          path: 'games/:id',
+          name: 'game-detail',
+          component: () => import('../views/game/game.vue'),
+        },
       ],
     },
   ],
