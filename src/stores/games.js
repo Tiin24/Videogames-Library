@@ -126,9 +126,23 @@ export const useRawgStore = defineStore('rawg', {
         }
       }
       // No hacer nada si ya tiene datos
+    },
+
+    async fetchRandomGameId() {
+      try {
+        const params = {
+          key: API_KEY,
+          page_size: 1,
+          page: Math.floor(Math.random() * 500) + 1, // RAWG tiene muchas páginas
+        };
+        const res = await axios.get(`${BASE_URL}/games`, { params });
+        const game = res.data.results?.[0];
+        return game?.id || null;
+      } catch (e) {
+        console.error('Error al obtener juego aleatorio:', e);
+        return null;
+      }
     }
-
-
 
 
   },
