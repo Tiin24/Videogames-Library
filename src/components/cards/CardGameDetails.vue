@@ -1,66 +1,98 @@
 <script setup>
-import { AlertCircle } from 'lucide-vue-next'
+import { ref, computed, onMounted } from 'vue'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { AlertCircle, Award, FolderOpen } from 'lucide-vue-next'
+
 import SectionBanner from '../sections/SectionBanner.vue'
-import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
-import { computed, onMounted, ref } from 'vue'
-import { useRawgStore } from '@/stores/games'
 import SectionAbout from '../sections/SectionAbout.vue'
 import SectionScreenshots from '../sections/SectionScreenshots.vue'
-const store = useRawgStore()
+import SectionMetascore from '../sections/SectionMetascore.vue'
+import SectionRawg from '../sections/SectionRawg.vue'
+import ResultPaginateTemplate from '../template/ResultPaginateTemplate.vue'
+import CardArchivement from './CardArchivement.vue'
+
+import { useRawgStore } from '@/stores/games'
+import { storeToRefs } from 'pinia'
 
 const props = defineProps({
-  game: { type: Object, required: true },
-  loading: { type: Boolean, default: false }
+  gameId: {
+    type: [String, Number],
+    required: true
+  }
 })
 
-console.log(props)
+const store = useRawgStore()
+const { dataMap } = storeToRefs(store)
 
-const additions = computed(() => store.additions || { results: [] })
-const achievements = computed(() => store.achievements || { results: [] })
-const parents = computed(() => store.parents || { results: [] })
-const series = computed(() => store.series || { results: [] })
-
-function isDesktop() {
-  return window.matchMedia('(min-width: 1280px)').matches;
-}
-
-const screenshots = ref([])
+const game = ref(null)
+const loading = ref(true)
+const error = ref(null)
 
 onMounted(async () => {
-  const result = await store.fetchScreenshots(props.game.id)
-  screenshots.value = result
+  try {
+    loading.value = true
+    game.value = await store.fetchGameDetails(props.gameId)
+
+    await Promise.all([
+      store.fetchGameEndpoint(props.gameId, 'additions'),
+      store.fetchGameEndpoint(props.gameId, 'achievements'),
+      store.fetchGameEndpoint(props.gameId, 'parent-games'),
+      store.fetchGameEndpoint(props.gameId, 'game-series'),
+      store.fetchGameEndpoint(props.gameId, 'screenshots')
+    ])
+  } catch (err) {
+    error.value = 'Error al cargar los detalles del juego.'
+    console.error(err)
+  } finally {
+    loading.value = false
+  }
 })
 
+const additions = computed(() => dataMap.value[`${props.gameId}-additions`] || [])
+const achievements = computed(() => dataMap.value[`${props.gameId}-achievements`] || [])
+const parents = computed(() => dataMap.value[`${props.gameId}-parent-games`] || [])
+const series = computed(() => dataMap.value[`${props.gameId}-game-series`] || [])
+const screenshots = computed(() => dataMap.value[`${props.gameId}-screenshots`] || [])
 </script>
 
 <template>
   <div class="overflow-hidden">
-    <div v-if="game === null && !loading">
-      <Alert variant="destructive">
-        <AlertCircle class="w-4 h-4" />
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>
-          <p>No game associated to this id : {{ id }}</p>
-          <router-link to="/" class="font-medium hover:text-primary focus:text-primary underline underline-offset-4">
-            Back to the homepage
-          </router-link>
-        </AlertDescription>
-      </Alert>
-    </div>
-    <template v-else>
-      <SectionBanner :game="game" :loading="loading" data-aos="fade-up" />
-      <div :class="{
-        'grid grid-cols-1 xl:grid-cols-2 gap-6': true,
-        'mb-6': additions.results.length || achievements.results.length || parents.results.length || series.results.length
-      }">
+    <Alert v-if="error" variant="destructive" class="mb-6">
+      <AlertCircle class="w-4 h-4" />
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>
+        {{ error }}
+        <br />
+        <router-link to="/" class="underline">Volver al inicio</router-link>
+      </AlertDescription>
+    </Alert>
+
+    <template v-else-if="game">
+      <SectionBanner :game="game" :loading="loading" />
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
         <div class="flex flex-col gap-6">
-          <SectionAbout :game="game" :loading="loading" :data-aos="isDesktop() ? 'fade-right' : 'fade-up'" />
+          <SectionAbout :game="game" :loading="loading" />
         </div>
-        <div v-if="screenshots.length || game?.metacritic || game?.rating" class="flex flex-col gap-6">
-          <SectionScreenshots :screenshots="screenshots" :loading="loading" />
-          <!-- <SectionMetascore :data-aos="isDesktop() ? 'fade-left' : 'fade-up'" :model="game" /> -->
+        <div v-if="screenshots.length || game.metacritic || game.rating" class="flex flex-col gap-6">
+          <SectionScreenshots :screenshots="screenshots" :loading="loading" v-if="screenshots.length" />
+          <SectionMetascore :game="game" />
+          <SectionRawg :game="game" />
         </div>
       </div>
+
+      <ResultPaginateTemplate :gameId="game.id" title="DLCs, remakes, remasters..." endpoint="additions"
+        :icon="FolderOpen" :pageTotal="additions.length" :loading="loading" />
+
+      <ResultPaginateTemplate :gameId="game.id" title="Achievements" endpoint="achievements" :icon="Award"
+        wrapperClass="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6" :pageTotal="achievements.length"
+        :pageSize="6" :loading="loading" :card="CardArchivement" />
+
+      <ResultPaginateTemplate :gameId="game.id" title="Original game" endpoint="parent-games" :icon="FolderOpen"
+        :pageTotal="parents.length" :loading="loading" />
+
+      <ResultPaginateTemplate :gameId="game.id" title="In the same series" endpoint="game-series" :icon="FolderOpen"
+        :pageTotal="series.length" :loading="loading" />
     </template>
   </div>
 </template>

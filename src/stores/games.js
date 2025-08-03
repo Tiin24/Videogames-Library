@@ -1,17 +1,21 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
-const API_KEY = '52ba7fc7e3bb48378ba876fcd8ca75db'; // ⚠️ Reemplazá esto por tu API real
+const API_KEY = '52ba7fc7e3bb48378ba876fcd8ca75db';
 const BASE_URL = 'https://api.rawg.io/api';
 
 export const useRawgStore = defineStore('rawg', {
   state: () => ({
-    data: [],             // ⬅️ ahora es genérico
+    data: [],
     dataMap: {},
     loading: false,
     error: null,
     page: 1,
     pageCount: 1,
+    additions: { results: [], count: 0 },
+    achievements: { results: [], count: 0 },
+    parentGames: { results: [], count: 0 },
+    series: { results: [], count: 0 },
   }),
 
   actions: {
@@ -87,20 +91,45 @@ export const useRawgStore = defineStore('rawg', {
       }
     },
 
-    async fetchScreenshots(gameId) {
-      this.loading = true
-      this.error = null
+    // 🔽 NUEVA ACCIÓN PARA LLAMADAS CON ENDPOINTS DINÁMICOS POR gameId
+    async fetchGameEndpoint(gameId, endpoint) {
+      this.loading = true;
+      this.error = null;
+      const key = `${gameId}-${endpoint}`;
+
       try {
-        const res = await axios.get(`${BASE_URL}/games/${gameId}/screenshots`, {
-          params: { key: API_KEY }
-        })
-        return res.data.results || []
+        const response = await axios.get(`${BASE_URL}/games/${gameId}/${endpoint}`, {
+          params: { key: API_KEY },
+        });
+
+        // Guarda la respuesta en dataMap con una clave única
+        this.dataMap[key] = response.data.results || response.data;
       } catch (error) {
-        this.error = error.message || 'Error al obtener screenshots'
-        return []
+        this.error = error.message || `Error al obtener ${endpoint} del juego ${gameId}`;
+        console.error(error);
       } finally {
-        this.loading = false
+        this.loading = false;
       }
+    },
+
+    async fetchGameEndpointPaginated(gameId, endpoint) {
+      const key = `${gameId}-${endpoint}`;
+      if (!this.dataMap[key] || this.dataMap[key].length === 0) {
+        try {
+          const res = await axios.get(`${BASE_URL}/games/${gameId}/${endpoint}`, {
+            params: { key: API_KEY }
+          });
+          this.dataMap[key] = res.data.results || [];
+        } catch (error) {
+          console.error(error);
+          this.dataMap[key] = [];
+        }
+      }
+      // No hacer nada si ya tiene datos
     }
+
+
+
+
   },
 });
